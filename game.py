@@ -35,7 +35,7 @@ def describe_game(name):
                 name = input("\nWhat is your name? \n>>> ").capitalize()
                 if name !="":
                     print("\nWlecome, {}!".format(name))
-                    print("\nIn this game, you will be greeted \nby several different people. \nYou can choose to be an angel or a villian \nby being nice or mean.")
+                    print("\nIn this game, you will be greeted \nby several different people. \nYou can choose to be an angel or a villain \nby being nice or mean.")
                     print("But, at the end of the game your fate \nwill be determined by your actions.")
                     stop=False
     return name
@@ -80,7 +80,7 @@ def win(nice,mean,name):
 
 def lose(nice,mean,name):
     #substitute the {} wildcards with out variable values
-    print("\nGame over! You are a true super villian. \n{}, you will never succeed in your evil plans!".format(name))
+    print("\nGame over! You are a true super villain. \n{}, you will never succeed in your evil plans!".format(name))
     #call again function to pass in our variables
     again(nice,mean,name)
     
