@@ -5,6 +5,7 @@ import os
 import shutil
 from datetime import *
 from datetime import timedelta
+import time
 
 
 class ParentWindow(Frame):
@@ -70,18 +71,23 @@ class ParentWindow(Frame):
         destination = self.destination_dir.get()
         #Gets a list of files in the source directory
         source_files = os.listdir(source)
-
-        currentTime = datetime.now()
-        print(currentTime)
-        
-        
         #Runs through each file in the source directory
         for i in source_files:
-            getModTime = os.path.getmtime(i)
+            file_path = os.path.join(source, i)
+            getModTime = os.path.getmtime(file_path)
             print(getModTime)
+            convertModTime= time.localtime(getModTime)
+            formatModTime = time.strftime('%d%m%Y %H:%M:%S', convertModTime)
+            datetimeModTime = datetime.strptime(formatModTime, '%d%m%Y %H:%M:%S')
+            print(datetimeModTime)
+            currentTime = datetime.now()
+            print(currentTime)
+            fileTransTime = currentTime - timedelta(hours = 24)
+            print(fileTransTime)
             #moves each file from the source to the destination
-            shutil.move(source + '/' + i, destination)
-            print(i + 'was successfully transferred.')
+            if datetimeModTime > fileTransTime:
+                shutil.move(source + '/' + i, destination)
+                print(i + 'was successfully transferred.')
 
     def exit_program(self):
         #root is the main GUI window, the Tkinter destroy method
