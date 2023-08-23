@@ -45,7 +45,7 @@ def onSelect(self,event):
     conn = sqlite3.connect('student_tracking.db')
     with conn:
         cursor = conn.cursor()
-        cursor.execute("""SELECT col_fname,col_lname,col_phone,col_email FROM tbl_students WHERE col_fname = (?)""", [value])
+        cursor.execute("""SELECT col_fname,col_lname,col_phone,col_email,col_course FROM tbl_students WHERE col_fname = (?)""", [value])
         varBody = cursor.fetchall()
         for data in varBody:
             self.txt_fname.delete(0,END)
@@ -80,7 +80,7 @@ def submit(self):
     
 
 def onDelete(self):
-    var_select = self.lstList1.get(self.lstList1.curselection()) # Listbox's selected value, get is built in function of listbox, stores the name the user clicked on
+    var_select = self.lstList1.get(self.lstList1.curselection()) 
     conn = sqlite3.connect('student_tracking.db')
     with conn:
         cursor = conn.cursor()

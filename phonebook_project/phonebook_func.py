@@ -12,6 +12,7 @@ import os
 from tkinter import *
 import tkinter as tk
 import sqlite3
+from tkinter import messagebox
 
 #importing other modules
 import phonebook_main
@@ -145,7 +146,7 @@ def addToList(self):
 
 def onDelete(self):
     var_select = self.lstList1.get(self.lstList1.curselection()) # Listbox's selected value, get is built in function of listbox, stores the name the user clicked on
-    conn = sqlite3.connect('.gitphonebook.db')
+    conn = sqlite3.connect('phonebook.db')
     with conn:
         cur = conn.cursor()
         # check count to ensure that this is not the last record in
@@ -160,7 +161,8 @@ def onDelete(self):
                     cursor = conn.cursor()
                     cursor.execute("""DELETE FROM tbl_phonebook WHERE col_fullname = '{}'""".format(var_select))
                 onDeleted(self) # call the function to clear all of the textboxes and the selected index of listbox
-######             onRefresh(self) # update the listbox of the changes
+######             onRefresh(self)
+                # update the listbox of the changes
                 conn.commit()
         else:
             confirm = messagebox.showerror("Last Record Error", "({}) is the last record in the database and cannot be deleted at this time. \n\nPlease add another record first before you can delete ({}).".format(var_select,var_select))

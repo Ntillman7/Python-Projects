@@ -75,7 +75,9 @@ class ParentWindow(Frame):
         for i in source_files:
             file_path = os.path.join(source, i)
             getModTime = os.path.getmtime(file_path)
+            #gets the modified time for each file
             print(getModTime)
+            #changing the float to datetime format
             convertModTime= time.localtime(getModTime)
             formatModTime = time.strftime('%d%m%Y %H:%M:%S', convertModTime)
             datetimeModTime = datetime.strptime(formatModTime, '%d%m%Y %H:%M:%S')

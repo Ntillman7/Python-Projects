@@ -1,45 +1,50 @@
 from datetime import *
 import pytz
 
-format = "%H"
+format = "%H"#formats date to only show the hour, didnt use in this code just for reference
 
 def PortlandTime():
-    portland = datetime.now()
-    portlandTimeZone = pytz.timezone('US/Pacific')
-    portlandTime = portland.astimezone(portlandTimeZone)
-    convert_portlandTime = (portlandTime.strftime(format))#converts to format with only hour
-    int_portlandTime = int(convert_portlandTime)
-    print(convert_portlandTime)
+    portland = datetime.now()#gets the time for right now
+    portlandTimeZone = pytz.timezone('US/Pacific')#gets the timezone
+    portlandTime = portland.astimezone(portlandTimeZone)#gets the time for the above chosen time zone
+    return portlandTime.hour#must return hour to use in the if statment
 
 
 def NYCTime():
     nyc =datetime.now()
     nycTimeZone = pytz.timezone('US/Eastern')
     nycTime= nyc.astimezone(nycTimeZone)
-    convert_nycTime =int(nycTime.strftime(format))
-    print(convert_nycTime)
-
+    return nycTime.hour
 
 def LondonTime():
     london = datetime.now()
     londonTimeZone = pytz.timezone('GMT')
     londonTime = london.astimezone(londonTimeZone)
-    convert_londonTime = int(londonTime.strftime(format))
-    print(convert_londonTime)
+    return londonTime.hour
 
 
-PortlandTime()
-NYCTime()
-LondonTime()
-
-
-def Open_Closed_Portland():
-    if PortlandTime() < 9:
-        print("Sorry, we are closed.")
-    elif PortlandTime() > 17:
-        print("Sorry, we are closed.")
+def Open_Closed():
+    if PortlandTime() < 9:#opening time
+        print("Portland branch is closed.")
+    elif PortlandTime() > 17:#closing time
+        print("Portland branch is closed.")
     else:
-        print('We are open!')
+        print('Portland branch is open!')
 
-        
-Open_or_Closed()
+    if LondonTime() < 9:
+        print("London branch is closed.")
+    elif LondonTime() > 17:
+        print("London branch is closed.")
+    else:
+        print('London branch is open!')
+
+    if NYCTime() < 9:
+        print("New York City branch is closed.")
+    elif NYCTime() > 17:
+        print("New York City branchis closed.")
+    else:
+        print('New York City branch is open!')
+
+
+if __name__ == "__main__":
+    Open_Closed()

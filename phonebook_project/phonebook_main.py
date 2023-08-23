@@ -18,7 +18,7 @@ import phonebook_func
 
 #Frame is the parent class from tkinter
 class ParentWindow(Frame):
-    def __inti__(self, master, *args, **kwargs):
+    def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)
 
         #defines master frame configuration

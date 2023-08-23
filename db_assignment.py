@@ -19,9 +19,9 @@ with conn:
         col_fileName STRING \
         )")
         #creating a table within the database
-    for file in fileList:
-        if file.endswith('.txt'):
-            cur.execute("INSERT INTO tbl_files(col_fileName) VALUES (?)",(file,))
+    for file in fileList: #file is arbitrary name assigned for each item in the list fileList
+        if file.endswith('.txt'): #pulling all items that end in .txt
+            cur.execute("INSERT INTO tbl_files(col_fileName) VALUES (?)",(file,))#using SQL to insert all values ending in txt into the database
             print(file)
     conn.commit()
 conn.close()
